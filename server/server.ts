@@ -1,19 +1,17 @@
 import * as express from "express";
+import RestRoutes from "../routes/restRoutes";
 
 const app = express();
 
-class Server {
-  _restRoutes: any;
+export default class Server {
 
-  constructor(restRoutes: any) {
-    this._restRoutes = restRoutes;
-  }
+  constructor(private readonly _restRoutes: RestRoutes) {}
 
   init() {
     this.getRouters();
 
     app.listen(3000, () => {
-        console.log(`Example app listening at http://localhost:3000`)
+        console.log("Application started on 3001 port")
     })
   }
 
@@ -22,5 +20,3 @@ class Server {
     app.use("/rest", this._restRoutes.getRoutes())
   }
 }
-
-module.exports = Server;

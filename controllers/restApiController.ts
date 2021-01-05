@@ -1,8 +1,13 @@
-class RestApiController {
+import { Request, Response } from "express";
+import * as path from "path";
 
-  static getIndex(req, res) {
-    res.send("Hello restApiController");
+export default class RestApiController {
+  constructor() {}
+
+  getIndex(req: Request, res: Response) {
+    const options = {
+      root: path.join(`${__dirname}/../`, 'public'),
+    }
+    return res.status(200).sendFile("index.html", options);
   }
 }
-
-module.exports = RestApiController;

@@ -1,18 +1,14 @@
 import * as express from "express";
+import RestApiController from "../controllers/restApiController";
 
 const router = express.Router();
 
-class RestRoutes {
-  _controller: any;
+export default class RestRoutes {
 
-  constructor(controller: any) {
-    this._controller = controller;
-  }
+  constructor(private _restApiController: RestApiController) {}
 
   getRoutes() {
-    router.get("/", this._controller.getIndex.bind(this._controller));
+    router.get("/", this._restApiController.getIndex.bind(this._restApiController));
     return router;
   }
 }
-
-module.exports = RestRoutes;
